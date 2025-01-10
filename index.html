@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive KI-Broschüre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      /* Grundlegende Einstellungen */
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow-y: auto;
+      }
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #222;
+        color: #EEE;
+      }
+  
+      .section {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        box-sizing: border-box;
+        text-align: center;
+        position: relative;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease-in-out;
+      }
+  
+      .section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+  
+      /* Hintergrundfarben für die Seiten */
+      .bg1 { background: linear-gradient(120deg, #707070, #ffffff); color: #222; }
+      .bg2 { background: linear-gradient(120deg, #0f2027, #203a43, #2c5364); }
+      .bg3 { background: linear-gradient(120deg, #00416A, #E4E5E6); }
+      .bg4 { background: linear-gradient(120deg, #09203f, #537895); }
+      .bg5 { background: linear-gradient(120deg, #42275a, #734b6d); }
+      .bg6 { background: linear-gradient(120deg, #606c88, #3f4c6b); }
+  
+      .construction-banner {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00);
+        color: #fff;
+        text-align: center;
+        padding: 0.3em 0;
+        font-family: 'Orbitron', sans-serif;
+        z-index: 1000;
+        font-size: 1.5rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        margin-bottom: 2rem;
+      }
+  
+      h1, h2 {
+        font-family: 'Montserrat', sans-serif;
+        margin-top: 4rem;
+      }
+  
+      /* Neuer Stil für graue Neon-Überschrift */
+      .neon-text {
+  font-family: 'Orbitron', sans-serif; /* Futuristische Schrift */
+  font-size: 2rem; /* Textgröße */
+  color: #000000; /* Schwarzer Text */
+  text-shadow: 
+    0 0 5px #5a5a5a,   /* Dezenter grauer Schimmer */
+    0 0 10px #757575,  /* Mittlerer grauer Schimmer */
+    0 0 20px #8f8f8f,  /* Helleres Grau für das Leuchten */
+    0 0 30px #a3a3a3;  /* Größeres Leuchten */
+  animation: glow 2s infinite alternate; /* Sanfte Glow-Animation */
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 
+      0 0 5px #5a5a5a,
+      0 0 10px #757575,
+      0 0 15px #8f8f8f,
+      0 0 20px #a3a3a3;
+  }
+  100% {
+    text-shadow: 
+      0 0 3px #5a5a5a,
+      0 0 7px #757575,
+      0 0 10px #8f8f8f,
+      0 0 15px #a3a3a3;
+  }
+}
+
+
+  
+      .feedback-section {
+        margin-top: 3rem;
+        text-align: center;
+        padding: 2rem;
+        background: #e8f4ff;
+        color: #003366;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+  
+      .feedback-section h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-family: 'Orbitron', sans-serif;
+      }
+  
+      .feedback-section textarea {
+        width: 80%;
+        max-width: 500px;
+        height: 80px;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border: none;
+        border-radius: 4px;
+        resize: none;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1rem;
+        background: #ffffff;
+        color: #003366;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+  
+      .feedback-section button {
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 4px;
+        background: #0066cc;
+        color: #fff;
+        font-family: 'Orbitron', sans-serif;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+  
+      .feedback-section button:hover {
+        background: #0052a3;
+      }
+  
+      @media (max-width: 768px) {
+        .construction-banner {
+          font-size: 1.1rem;
+          padding: 0.2em 0;
+          background: linear-gradient(90deg, #ff0000, #ff7f00);
+        }
+        h1 {
+          margin-top: 6rem;
+        }
+      }
+    </style>
+  </head>
+  
+<body>
+
+  <div class="construction-banner">
+    *** !!! UNDER CONSTRUCTION - UND LOS !!! ***
+  </div>
+
+  <!-- 1. Seite -->
+  <div class="section bg1">
+    <h1 class="neon-text">AI und Du</h1>
+    <h2>Deine entspannte Einführung in die Welt der KI</h2>
+    <p>
+      Willkommen in deiner (bald) interaktiven Broschüre über Künstliche Intelligenz!<br>
+      Noch siehst du hier meine erste eigene Website im wilden Rohformat.<br>
+      Hier teste ich alle möglichen neuen Technologien, HTML und später KI Tools.<br>
+      Um live zu üben und um herauszufinden, was in Zukunft am besten funktioniert,<br>
+      wenn ich so weit bin, meine/unsere disruptiven Business-Ideen zu vermarkten!
+    </p>
+    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWw1dWkza2J0YXZ4YTJ2cjhnanN1bGQweWNqdWU4emw5aTI1YTA4OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/9AIcPB6anurolcH8h3/giphy.webp" 
+     alt="KI Animation" width="90" height="auto">
+  </div>
+
+<!-- 2. Seite -->
+<div class="section bg2">
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmNhbmRtYXh1YnRrMHF0bmhyMDhteWwyNXNwdzkyZTUzZGFidjBkdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/XMkRFxK153adUcGeFH/giphy.webp" 
+     alt="KI Animation" width="180" height="auto">
+  <h2>Inhaltsverzeichnis</h2>
+  <ol>
+    <li>Was ist "Künstliche Intelligenz" überhaupt?</li>
+    <li>Wie funktioniert sie und was wird für uns wichtig?</li>
+    <li>Warum ist AI unvermeidbar? Chancen & Ängste</li>
+    <li>AI in unserer Zukunft in der "neuen Welt"</li>
+    <li>Tipps im Umgang mit KI und deine Entscheidung</li>
+    <li>Fazit von mir & meine persönlichen Pläne</li>
+  </ol>
+</div>
+
+<!-- 3. Seite -->
+<div class="section bg3">
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDlzdWlpd2o3N2RraDJkOTBtaGZmaWEwNWJoZ3NqNzd2eGJvYWNtcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8hYQgBIIHkCPjRTmai/giphy.webp" 
+  alt="KI Animation" width="180" height="auto">
+  <h2>1. Was ist Künstliche Intelligenz?</h2>
+  <p>
+    Künstliche Intelligenz beschreibt Algorithmen, die Tätigkeiten ausführen,
+    für die man eigentlich menschliche Intelligenz bräuchte.
+  </p>
+</div>
+
+<!-- 4. Seite -->
+<div class="section bg4">
+  <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExamVyam4ycnA0NXF2a3FqOW10aGg2N3JucWI3OXR0dXIwdTRnaTZrOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/9J3zCEDkHaifAOgJlO/giphy.webp" 
+     alt="KI Animation" width="90" height="auto">
+  <h2>2. Wie funktioniert KI?</h2>
+  <p>Machine Learning und Deep Learning sind Schlüsseltechnologien der KI.</p>
+  <h2>3. Warum AI? Chancen & Potenziale</h2>
+  <ul>
+    <li>Medizin</li>
+    <li>Wirtschaft</li>
+    <li>Alltag</li>
+  </ul>
+</div>
+
+<!-- 5. Seite -->
+<div class="section bg5">
+  <h2>4. AI im Alltag</h2>
+  <p>KI-Anwendungen sind längst Standard in vielen Bereichen.</p>
+  <h2>5. Tipps im Umgang mit KI</h2>
+  <ol>
+    <li>Datenschutz prüfen</li>
+    <li>Offen bleiben</li>
+  </ol>
+</div>
+
+<!-- 6. Seite -->
+<div class="section bg6">
+  <h2>6. Fazit & Ausblick</h2>
+  <p>
+    KI ist kein Science-Fiction mehr, sondern fester Bestandteil unseres Alltags.
+    „Mensch + KI = Ein starkes Team für die Zukunft!“
+  </p>
+  <p><strong>Vielen Dank fürs Lesen!</strong></p>
+
+  <!-- Feedback -->
+  <div class="section bg6">
+    <h2>Fazit & Feedback</h2>
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2lvdGlhMmR3NTNkd3MwYnRxdHl1djFoOWZ4ZzFleGdwbmVycmwycCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/UsRe7zbQwOCiDVHKjH/giphy.webp" 
+     alt="KI Animation" width="90" height="auto">
+    <div class="feedback-section">
+      <h3>Würdest du hier etwas verbessern?</h3>
+      <textarea id="feedback" placeholder="Dein Feedback..."></textarea>
+      <br>
+      <button id="submitFeedback">Danke für deine Unterstützung</button>
+      <p id="thankYouMessage" style="display: none; color: green; margin-top: 10px;">Danke für dein Feedback!</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // JavaScript: Feedback-Formular Funktion
+  document.getElementById("submitFeedback").addEventListener("click", function() {
+    document.getElementById("thankYouMessage").style.display = "block";
+  });
+// Konfetti-Effekt für den Feedback-Button
+document.getElementById("submitFeedback").addEventListener("click", function() {
+  // Zeige die "Danke"-Nachricht
+  document.getElementById("thankYouMessage").style.display = "block";
+
+  // Starte den Konfetti-Effekt
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 } // Die Höhe, wo das Konfetti startet
+  });
+});
+
+  // Scroll-Fade-In Animation
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  });
+  sections.forEach(section => observer.observe(section));
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>
